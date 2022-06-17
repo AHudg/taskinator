@@ -27,6 +27,7 @@ var completeEditTask = function(taskName, taskType, taskId) {
             task[i].type = taskType;
         }
     };
+    saveTask();
 
     alert("Task Updated!");
     formEl.removeAttribute("data-task-id");
@@ -90,6 +91,8 @@ var createTaskEl = function(taskDataObj) {
 
     taskDataObj.id = taskIdCounter;
     tasks.push(taskDataObj);
+
+    saveTasks();
 
     // runs the function to create the edit btn, delete btn and select html attributes for the task
     var taskActionsEl = createTaskActions(taskIdCounter);
@@ -181,6 +184,7 @@ var deleteTask = function(taskId) {
     }
     // reassign tasks array to be the same as updatedTaskArr
     tasks = updatedTaskArr;
+    saveTasks();
 }
 
 var taskButtonHandler = function(event) {
@@ -226,7 +230,12 @@ var taskStatusChangeHandler = function(event) {
             tasks[i].status = statusValue;
         }
     }
+    saveTasks();
 };
+
+var saveTasks = function() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
 
 formEl.addEventListener("submit", taskFormHandler);
 
