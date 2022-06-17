@@ -7,7 +7,7 @@ var taskIdCounter = 0;
 // targets the <main> w/ id=page-content
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
-var tasksCompletedEl = document.querySelector("#tasks-complete");
+var tasksCompletedEl = document.querySelector("#tasks-completed");
 
 var completeEditTask = function(taskName, taskType, taskId) {
     // find the matching task list item
@@ -50,19 +50,12 @@ var taskFormHandler = function(event) {
         name: taskNameInput,
         type: taskTypeInput
         };
-    
-        // createTaskEl(taskDataObj);
+        
+        // send it as an argument to createTaskEl
+        createTaskEl(taskDataObj);
     }
-  
-    // package up data as an object
-    var taskDataObj = {
-        name: taskNameInput,
-        type: taskTypeInput
-    };
-
-    // send it as an argument to createTaskEl
-    createTaskEl(taskDataObj);
 };
+
 
 var createTaskEl = function(taskDataObj) {
     // create DOM Element <li>
